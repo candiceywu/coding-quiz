@@ -14,33 +14,42 @@
 
     <header>
         <h1 id="highscores">High scores</h1>
-        <h2 id="timer">Timer</h2>
     </header>
 
-    <main>
-        <section>
-            <div class="greeting">
-            <h3 id="introduction"></h3>
-            <p id="description"></p>
-            </div>
+    <div class="card timer">
+        <div class="timer-text">
+            <div class="timer-count">60</div>
+            <h2>seconds remaining</h2>
+        </div>
 
-            <div>
-                <button type="start-button">Start</button>
-            </div>
+        <main>
+            <section>
+                <div class="greeting">
+                    <h3 id="introduction"></h3>
+                    <p id="description"></p>
+                </div>
 
-            <div>
-                <ul>
-                    <li><button id="mc1"></li>
-                    <li><button id="mc2"></li>
-                    <li><button id="mc3"></li>
-                    <li><button id="mc4"></li>
-                </ul>
+                <div>
+                    <button type="start-button">Start</button>
+                </div>
 
-                <p id="answer"></p>
-            </div>
-        </section>
+                <div>
+                    <ul>
+                        <li><button id="mc1"></li>
+                        <li><button id="mc2"></li>
+                        <li><button id="mc3"></li>
+                        <li><button id="mc4"></li>
+                    </ul>
 
-        <!-- <section class="final-score">
+                    <p id="answer"></p>
+                </div>
+
+                <div>
+                    <button type="next-button">Next</button>
+                </div>
+            </section>
+
+            <!-- <section class="final-score">
             <p>Attempts : </p>
             <p>Wrong Answers : <span id="wrong-answers"></span></p>
             <p>Right Answers : <span id="right-answers"></span></p>
@@ -48,8 +57,9 @@
             <p><span id="remarks"></span></p>
         </section> -->
 
-    </main>
+        </main>
 
-    <script src="./assets/script.js"></script>
+        <script src="./assets/script.js"></script>
 </body>
+
 </html>
