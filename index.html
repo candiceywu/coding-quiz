@@ -13,42 +13,57 @@
 <body>
 
     <header>
-        <h1 id="highscores">High scores</h1>
+        <h1 id="highscores">View High Scores</h1>
     </header>
 
-    <div class="card timer">
-        <div class="timer-text">
-            <div class="timer-count">seconds remaining</div>
-        </div>
 
-        <main>
-            <section>
-                <div class="greeting">
-                    <h3 id="introduction"></h3>
-                    <p id="instructions">Do your best to answer these multiple-choice questions. There's a 60-second timer at the top-right corner, but if you answer a question incorrectly, 10 seconds will be docked from the countdown.</p>
-                    <p id="description"></p>
+    <div class="timer-text">
+        <div class="timer-count"></div>
+        <h2>seconds remaining</h2>
+    </div>
+
+    <main>
+        <section>
+
+            <div class="card results">
+                <div class="win-loss-container">
+                    <div>
+                        <h2>Wins: <span class="win">0 </span> </h2>
+                        <h2>Losses: <span class="lose">0</span></h2>
+                    </div>
+                    <button class="reset-button">Reset Score</button>
                 </div>
 
-                <div>
-                    <button id="start">Start</button>
-                </div>
+            <div class="greeting">
+                <h3 id="introduction"></h3>
+                <p id="instructions">Do your best to answer these multiple-choice questions. There's a 60-second
+                    timer
+                    at the top-right corner, but if you answer a question incorrectly, 10 seconds will be docked
+                    from
+                    the countdown.</p>
+                <p id="description"></p>
+            </div>
 
-                <div>
-                    <ul>
-                        <li><button id="mc1"></li>
-                        <li><button id="mc2"></li>
-                        <li><button id="mc3"></li>
-                        <li><button id="mc4"></li>
-                    </ul>
+            <div>
+                <button id="start">Start</button>
+            </div>
 
-                    <p id="show-answer"></p>
-                </div>
+            <div>
+                <ul>
+                    <li><button id="mc1"></li>
+                    <li><button id="mc2"></li>
+                    <li><button id="mc3"></li>
+                    <li><button id="mc4"></li>
+                </ul>
 
-            </section>
+                <p id="show-answer"></p>
+            </div>
 
-        </main>
+        </section>
 
-        <script src="./assets/script.js"></script>
+    </main>
+
+    <script src="./assets/script.js"></script>
 </body>
 
 </html>

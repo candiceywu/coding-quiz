@@ -6,6 +6,9 @@ var nextButton = document.querySelector("#next-button");
 var main = document.querySelector(main);
 var questionToDisplay = document.querySelector("#description");
 var quizInstructions = document.querySelector("#instructions");
+var winsLosses = document.querySelector(".win-loss-container");
+var win = document.querySelector(".win");
+var lose = document.querySelector(".lose");
 
 
 // multiple choice questions
@@ -15,12 +18,13 @@ var mc3 = document.querySelector("#mc3");
 var mc4 = document.querySelector("#mc4");
 var showAnswer = document.querySelector("#show-answer");
 var finalScore = [];
-var winCount = 0;
+var winCounter = 0;
 var isCorrect = "";
-var loseCount = 0;
+var loseCounter = 0;
 var currentQuestions = "";
 var questionNum = 0;
 var currentQuestion = "";
+
 
 // intro page
 document.getElementById("introduction").textContent = "Let's test your coding knowledge!";
@@ -71,14 +75,59 @@ var questionSet5 = {
     answer: 1
 };
 
+// array that keeps all 5 questions
 var questionBank = [questionSet1, questionSet2, questionSet3, questionSet4, questionSet5];
 var currentQuestion = questionBank[questionNum];
 console.log(currentQuestion.qPrompt);
 
+
+
+
+
+// Updates win count on screen and sets win count to client storage
+function setWins() {
+    win.textContent = winCounter;
+    localStorage.setItem("winCount", winCounter);
+}
+
+  // Updates lose count on screen and sets lose count to client storage
+  function setLosses() {
+    lose.textContent = loseCounter;
+    localStorage.setItem("loseCount", loseCounter);
+  }
+
+  // These functions are used by init
+  function getWins() {
+    // Get stored value from client storage, if it exists
+    var storedWins = localStorage.getItem("winCount");
+    // If stored value doesn't exist, set counter to 0
+    if (storedWins === null) {
+      winCounter = 0;
+    } else {
+      // If a value is retrieved from client storage set the winCounter to that value
+      winCounter = storedWins;
+    }
+    //Render win count to page
+    win.textContent = winCounter;
+  }
+
+  function getlosses() {
+    var storedLosses = localStorage.getItem("loseCount");
+    if (storedLosses === null) {
+      loseCounter = 0;
+    } else {
+      loseCounter = storedLosses;
+    }
+    lose.textContent = loseCounter;
+  }
+
+
+
+
+
+
 function updateApp() {
     currentQuestion = questionBank[questionNum];
-    // console.log(currentQuestion);
-    // console.log(questionNum);
     questionToDisplay.textContent = currentQuestion.qPrompt;
     mc1.textContent = currentQuestion.option1;
     mc2.textContent = currentQuestion.option2;
@@ -87,11 +136,7 @@ function updateApp() {
     return currentQuestion;
 };
 
-// when you click start button, start button should disappear
-// mc buttons 1-4 should be hidden and when button is clicked, they should show up
-// start button will then disappear (hidden? set attribute?)
-// Description will need to turn into question prompt
-
+// when you click start button, start button should disappear and other buttons appear/disappear
 document.addEventListener("click", function (event) {
     if (event.target === startButton) {
         updateApp();
@@ -118,7 +163,7 @@ document.addEventListener("click", function (event) {
             showAnswer.textContent = "Incorrect!";
             isCorrect = "Incorrect!";
             questionNum++;
-            count -=10;
+            count -= 10;
             updateApp();
             console.log(isCorrect);
         };
@@ -147,8 +192,9 @@ function startTimer() {
 
         if (count === 0) {
             // stops execution of action at set interval
-            clearInterval(timerInterval);
+            clearInterval(timer);
         }
 
     }, 1000); // timer is a loop, iterates 
 }
+
