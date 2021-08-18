@@ -1,14 +1,15 @@
 // variables
-var highscores = document.querySelector("#highscores");
+var highscores = document.querySelector(".highscores");
 var timeCount = document.querySelector(".timer-count");
 var startButton = document.querySelector("#start");
 var nextButton = document.querySelector("#next-button");
 var main = document.querySelector(main);
 var questionToDisplay = document.querySelector("#description");
 var quizInstructions = document.querySelector("#instructions");
-var winsLosses = document.querySelector(".win-loss-container");
-var win = document.querySelector(".win");
-var lose = document.querySelector(".lose");
+var totalCount = document.querySelector(".win-loss-container");
+// var win = document.querySelector(".win");
+// var lose = document.querySelector(".lose");
+
 
 
 // multiple choice questions
@@ -21,7 +22,6 @@ var finalScore = [];
 var winCounter = 0;
 var isCorrect = "";
 var loseCounter = 0;
-var currentQuestions = "";
 var questionNum = 0;
 var currentQuestion = "";
 
@@ -75,56 +75,9 @@ var questionSet5 = {
     answer: 1
 };
 
-// array that keeps all 5 questions
+// array that holds all 5 questions
 var questionBank = [questionSet1, questionSet2, questionSet3, questionSet4, questionSet5];
 var currentQuestion = questionBank[questionNum];
-console.log(currentQuestion.qPrompt);
-
-
-
-
-
-// Updates win count on screen and sets win count to client storage
-function setWins() {
-    win.textContent = winCounter;
-    localStorage.setItem("winCount", winCounter);
-}
-
-  // Updates lose count on screen and sets lose count to client storage
-  function setLosses() {
-    lose.textContent = loseCounter;
-    localStorage.setItem("loseCount", loseCounter);
-  }
-
-  // These functions are used by init
-  function getWins() {
-    // Get stored value from client storage, if it exists
-    var storedWins = localStorage.getItem("winCount");
-    // If stored value doesn't exist, set counter to 0
-    if (storedWins === null) {
-      winCounter = 0;
-    } else {
-      // If a value is retrieved from client storage set the winCounter to that value
-      winCounter = storedWins;
-    }
-    //Render win count to page
-    win.textContent = winCounter;
-  }
-
-  function getlosses() {
-    var storedLosses = localStorage.getItem("loseCount");
-    if (storedLosses === null) {
-      loseCounter = 0;
-    } else {
-      loseCounter = storedLosses;
-    }
-    lose.textContent = loseCounter;
-  }
-
-
-
-
-
 
 function updateApp() {
     currentQuestion = questionBank[questionNum];
@@ -135,6 +88,8 @@ function updateApp() {
     mc4.textContent = currentQuestion.option4;
     return currentQuestion;
 };
+
+
 
 // when you click start button, start button should disappear and other buttons appear/disappear
 document.addEventListener("click", function (event) {
@@ -149,6 +104,8 @@ document.addEventListener("click", function (event) {
     };
 });
 
+
+
 // event listener for correct/incorrect buttons
 document.addEventListener("click", function (event) {
     if (event.target === mc1 || event.target === mc2 || event.target === mc3 || event.target === mc4) {
@@ -156,13 +113,16 @@ document.addEventListener("click", function (event) {
             showAnswer.textContent = "Correct!";
             isCorrect = "Correct!";
             questionNum++;
-            finalScore++;
+            winCounter++; //is not logging 
             updateApp();
             console.log(isCorrect);
+        
+
         } else {
             showAnswer.textContent = "Incorrect!";
             isCorrect = "Incorrect!";
             questionNum++;
+            loseCounter--; //is not logging 
             count -= 10;
             updateApp();
             console.log(isCorrect);
@@ -170,6 +130,15 @@ document.addEventListener("click", function (event) {
     }
 
 });
+
+// // when question 5 is complete, move to final score and logging initials 
+// document.addEventListener("click", function(event){
+//     if (event.target === questionSet5) {
+//         return questionNum;
+//     }
+// });
+
+
 
 // timer variables
 var count = 60;
@@ -198,3 +167,81 @@ function startTimer() {
     }, 1000); // timer is a loop, iterates 
 }
 
+
+// local storage 
+
+
+
+
+
+
+
+// //local storage for initials at the end (activity 24)
+// var userInitialsInput = document.querySelector("#initials");
+// var userInitialsSpan = document.querySelector("user-initials");
+
+// signUpButton.addEventListener("click", function(event) {
+//     event.preventDefault();
+    
+//     // create user object from submission
+//     var user = {
+//       firstName: userInitialsInput.value.trim(),
+//       points: highscores.value.trim()
+//     };
+  
+//     // set new submission to local storage 
+//     localStorage.setItem("user", JSON.stringify(user));
+    
+//   });
+
+// //   displays initials and score 
+//   renderLastRegistered();
+  
+//   function renderLastRegistered() {
+//     var initials = localStorage.getItem("initials");
+  
+//     if (!initials) {
+//       return;
+//     }
+  
+//     userInitialsSpan.textContent = initials;
+//   }
+
+
+
+//   // Updates win count on screen and sets win count to client storage
+// function setWins() {
+//     win.textContent = winCounter;
+//     localStorage.setItem("winCount", winCounter);
+// }
+
+//   // Updates lose count on screen and sets lose count to client storage
+//   function setLosses() {
+//     lose.textContent = loseCounter;
+//     localStorage.setItem("loseCount", loseCounter);
+//   }
+
+//   // These functions are used by init
+//   function getWins() {
+//     // Get stored value from client storage, if it exists
+//     var storedWins = localStorage.getItem("winCount");
+//     // If stored value doesn't exist, set counter to 0
+//     if (storedWins === null) {
+//       winCounter = 0;
+//     } else {
+//       // If a value is retrieved from client storage set the winCounter to that value
+//       winCounter = storedWins;
+//     }
+//     //Render win count to page
+//     win.textContent = winCounter;
+//   }
+
+//   function getlosses() {
+//     var storedLosses = localStorage.getItem("loseCount");
+//     if (storedLosses === null) {
+//       loseCounter = 0;
+//     } else {
+//       loseCounter = storedLosses;
+//     }
+//     lose.textContent = loseCounter;
+//   }

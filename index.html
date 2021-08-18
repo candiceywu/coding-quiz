@@ -12,56 +12,74 @@
 
 <body>
 
-    <header>
-        <h1 id="highscores">View High Scores</h1>
-    </header>
+    <section id="score-board">
+        <span class="score">0</span>
+        <ol class="highscores">View Highscores</ol>
 
-
-    <div class="timer-text">
-        <div class="timer-count"></div>
-        <h2>seconds remaining</h2>
+        <!-- <div class="card">
+        <form method="POST">
+            <div class="input-group">
+                <label for="initials">Your Initials</label>
+                <input type="text" name="initials" id="initials" placeholder="CW" />
+            </div>
+            <div id="msg"></div>
+            <button id="go-back">Go Back</button>
+            <button id="clear-highscores">Clear Highscores</button>
+        </form>
     </div>
 
-    <main>
-        <section>
+    <div class="card">
+        <h2>Last Registered User:</h2>
+        <p><strong>Initials:</strong> <span id="user-initials"></span></p>
+      </div> -->
+    </section>
 
-            <div class="card results">
+    <section>
+        <div class="timer-text">
+            <div class="timer-count"></div>
+            <h2>seconds remaining</h2>
+        </div>
+    </section>
+
+    <section>
+
+        <!-- <div class="card results">
                 <div class="win-loss-container">
                     <div>
-                        <h2>Wins: <span class="win">0 </span> </h2>
-                        <h2>Losses: <span class="lose">0</span></h2>
+                        <h3>Wins: <span class="win">0 </span> </h3>
+                        <h3>Losses: <span class="lose">0</span></h3>
                     </div>
                     <button class="reset-button">Reset Score</button>
-                </div>
+                </div> -->
 
-            <div class="greeting">
-                <h3 id="introduction"></h3>
-                <p id="instructions">Do your best to answer these multiple-choice questions. There's a 60-second
-                    timer
-                    at the top-right corner, but if you answer a question incorrectly, 10 seconds will be docked
-                    from
-                    the countdown.</p>
-                <p id="description"></p>
-            </div>
+        <div class="greeting">
+            <h4 id="introduction"></h4>
+            <p id="instructions">Do your best to answer these multiple-choice questions. There's a 60-second
+                timer
+                at the top-right corner, but if you answer a question incorrectly, 10 seconds will be docked
+                from
+                the countdown.</p>
+            <p id="description"></p>
+        </div>
 
-            <div>
-                <button id="start">Start</button>
-            </div>
+        <div>
+            <button id="start">Start</button>
+        </div>
 
-            <div>
-                <ul>
-                    <li><button id="mc1"></li>
-                    <li><button id="mc2"></li>
-                    <li><button id="mc3"></li>
-                    <li><button id="mc4"></li>
-                </ul>
+        <div>
+            <ul>
+                <li><button id="mc1"></li>
+                <li><button id="mc2"></li>
+                <li><button id="mc3"></li>
+                <li><button id="mc4"></li>
+            </ul>
 
-                <p id="show-answer"></p>
-            </div>
+            <p id="show-answer"></p>
+        </div>
 
-        </section>
+    </section>
 
-    </main>
+
 
     <script src="./assets/script.js"></script>
 </body>

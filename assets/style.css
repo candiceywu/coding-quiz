@@ -11,11 +11,7 @@ body {
   font-family: Helvetica; 
 }
 
-h1 {
-  display: flex;
-  font-size: 20px;
-  justify-content: flex-start;
-}
+
 
 h2, .timer-count {
   display: flex;
@@ -28,6 +24,11 @@ header {
   flex-wrap: wrap;
   margin: 20px;
   justify-content:space-between;
+}
+
+ol, .score {
+  display: block;
+  position: absolute;
 }
 
 #introduction {
