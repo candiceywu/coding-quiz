@@ -99,11 +99,11 @@ function startTimer() {
         count--;
         console.log(count);
         timeCount.textContent = count;
-        // stops execution of action at set interval
-        clearInterval(timer);
-        updateApp();
-
-    }, 1000); // timer is a loop, iterates 
+        if (count === 0) {
+            // stops execution of action at set interval
+            clearInterval(timer);
+        }
+    }, 1000); // timer is a loop, iterates
 }
 
 function updateApp() {
@@ -181,27 +181,6 @@ document.addEventListener("click", function (event) {
 
 
 
-// // var score = 0;
-// // var questionNum = 0;
-// // var currentQuestion = "";
-// // var timer = document.querySelector("#timer");
-// // var button1 = document.querySelector("#button1");
-// // var button2 = document.querySelector("#button2");
-// // var button3 = document.querySelector("#button3");
-// // var button4 = document.querySelector("#button4");
-// // var start = document.querySelector("#startButton");
-// var h1 = document.querySelector("#score-board");
-// // var showAnswer = document.querySelector("p");
-// var scoreSection = document.querySelector("form");
-// // var submitButton = document.querySelector("#nameButton");
-// var scoreList = document.querySelector("#scoreList");
-// var userName = document.querySelector("#userName");
-// var playAgain = document.querySelector("#playAgain");
-// // var finalScore = "";
-// // var timerCount = 60;
-// // var timerOn;
-
-
 
 
 
@@ -218,7 +197,7 @@ document.addEventListener("click", function (event) {
 //     showAnswer.textContent = "";
 //     finalScore = score + " correct with " + timerCount + " seconds remaining";
 //     console.log(finalScore)
-//     h1El.textContent = "You finished with a score of " + score + "/5 and " + timerCount + " seconds remaining!";
+//     h1El.textContent = "You finished with a score of " + score";
 //     scoreSection.setAttribute("style", "display: block;");
 // };
 
@@ -227,14 +206,12 @@ document.addEventListener("click", function (event) {
 //     currentScores = "";
 
 
-//     currentScores = workingScores.concat(localStorage.getItem("scores"));
+//     currentScores = currentScores.concat(localStorage.getItem("scores"));
 
 //     console.log(currentScores);
 //     currentScores = currentScores.split(",");
 //     currentScores = currentScores.concat(finalScore);
 //     console.log(currentScores);
-//     // so a null keeps attaching to the front of working scores and I can't
-//     // avoid it so we're just skipping position 0
 //     for (var i = 1; i < currentScores.length; i++) {
 //         var eachInitials = document.createElement("li");  //creates a list item element
 //         eachInitials.textContent = workingScores[i];      //assigns the current position to that list item
@@ -245,7 +222,7 @@ document.addEventListener("click", function (event) {
 //     scoreList.setAttribute("style", "display: block;");
 //     scoreSection.setAttribute("style", "display: none;");
 //     h1.textContent = "All Scores"
-//     localStorage.setItem("scores", workingScores);
+//     localStorage.setItem("scores", currentScores);
 
 
 // };
@@ -261,10 +238,10 @@ document.addEventListener("click", function (event) {
 //             child = scoreList.lastElementChild;
 //         };
 
-//         score = 0;
+//         finalScore = 0;
 //         questionNum = 0;
 //         finalScore = "";
-//         timerCount = 60;
+//         count = 60;
 //         currentQuestion = "";
 //         playAgain.setAttribute("style", "display: none;");
 
