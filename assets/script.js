@@ -1,5 +1,5 @@
 // variables
-var totalHighscores = document.querySelector(".highscores");
+// var highscoreList = document.querySelector(".highscore-list");
 var timeCount = document.querySelector(".timer-count");
 var startButton = document.querySelector("#start");
 var nextButton = document.querySelector("#next-button");
@@ -21,8 +21,8 @@ var showAnswer = document.querySelector("#show-answer");
 var questionNum = 0;
 var currentQuestion = "";
 var isCorrect = "";
-var initials ="";
-var finalScore = 0; 
+var initials = "";
+var finalScore = 0;
 
 
 // timer variables
@@ -31,7 +31,7 @@ var timer;
 
 
 // intro page
-document.getElementById("introduction").textContent = "Let's test your coding knowledge!";
+var introduction = document.getElementById("introduction").textContent = "Let's test your coding knowledge!";
 
 // question bank (5 questions)
 var questionSet1 = {
@@ -65,7 +65,7 @@ var questionSet4 = {
     qPrompt: "What does API stand for?",
     option1: "1. Application Programming Interface",
     option2: "2. Associated Platform Internet",
-    option3: "3. Applicable Progam Interaction",
+    option3: "3. Applicable Program Interaction",
     option4: "4. Applied Preface Instance",
     answer: 1
 };
@@ -99,35 +99,37 @@ function startTimer() {
         count--;
         console.log(count);
         timeCount.textContent = count;
-
-        if (count === 0) {
-            // stops execution of action at set interval
-            clearInterval(timer);
-        }
+        // stops execution of action at set interval
+        clearInterval(timer);
+        updateApp();
 
     }, 1000); // timer is a loop, iterates 
 }
 
 function updateApp() {
     if (questionNum < 5) {
-    currentQuestion = questionBank[questionNum];
-    questionToDisplay.textContent = currentQuestion.qPrompt;
-    mc1.textContent = currentQuestion.option1;
-    mc2.textContent = currentQuestion.option2;
-    mc3.textContent = currentQuestion.option3;
-    mc4.textContent = currentQuestion.option4;
-    return currentQuestion;
+        currentQuestion = questionBank[questionNum];
+        questionToDisplay.textContent = currentQuestion.qPrompt;
+        mc1.textContent = currentQuestion.option1;
+        mc2.textContent = currentQuestion.option2;
+        mc3.textContent = currentQuestion.option3;
+        mc4.textContent = currentQuestion.option4;
+        return currentQuestion;
     }
     else {
         clearInterval(timer);
-        return questionNum;
-    
-        // // do i add something here for if we 'return questionNum', else mc4.setAttribute("style, "display: none");
-        // scoreBox.setAttribute("style", "display: block");
+        questionToDisplay.setAttribute("style", "display: none");
+        mc1.setAttribute("style", "display: none");
+        mc2.setAttribute("style", "display: none");
+        mc3.setAttribute("style", "display: none");
+        mc4.setAttribute("style", "display: none");
+        scoreBox.setAttribute("style", "display: block");
+        return;
 
-        
     }
 };
+
+
 
 
 // when you click start button, start button should disappear and other buttons appear/disappear
@@ -136,27 +138,26 @@ document.addEventListener("click", function (event) {
         updateApp();
         startButton.setAttribute("style", "display: none;");
         quizInstructions.setAttribute("style", "display: none");
-        mc1.setAttribute("style", "display: block;");
-        mc2.setAttribute("style", "display: block;");
-        mc3.setAttribute("style", "display: block;");
-        mc4.setAttribute("style", "display: block;");
+        mc1.setAttribute("style", "display: block");
+        mc2.setAttribute("style", "display: block");
+        mc3.setAttribute("style", "display: block");
+        mc4.setAttribute("style", "display: block");
     };
 });
 
 
-// event listener for correct/incorrect buttons
+// event listener for correct/incorrect buttons and performs the function
 document.addEventListener("click", function (event) {
     if (event.target === mc1 || event.target === mc2 || event.target === mc3 || event.target === mc4) {
+
         if (event.target.textContent[0] == currentQuestion.answer) {
             showAnswer.textContent = "Correct!";
             isCorrect = "Correct!";
             questionNum++;
             finalScore++;
-            // winCounter++; //is not logging 
             updateApp();
             console.log(isCorrect);
             console.log(finalScore);
-        
         } else {
             showAnswer.textContent = "Incorrect!";
             isCorrect = "Incorrect!";
@@ -166,23 +167,106 @@ document.addEventListener("click", function (event) {
             console.log(isCorrect);
         };
     }
-    scoreCount.textContent= "Scoreboard: " + finalScore;
+    scoreCount.textContent = "Scoreboard: " + finalScore;
 });
+
+
+
+
 
 
 // local storage 
 
-// localStorage.setItem for storage
-var userScore = localStorage.setItem("highscore", finalScore);
-var storedInitials = localStorage.setItem("initials-text", userInitials);
-
-
-
-// localStorage.getItem to pull it back up
-var highscore = localStorage.getItem("highscore");
-var currentInitials = localStorage.getItem("initials");
 
 
 
 
+// // var score = 0;
+// // var questionNum = 0;
+// // var currentQuestion = "";
+// // var timer = document.querySelector("#timer");
+// // var button1 = document.querySelector("#button1");
+// // var button2 = document.querySelector("#button2");
+// // var button3 = document.querySelector("#button3");
+// // var button4 = document.querySelector("#button4");
+// // var start = document.querySelector("#startButton");
+// var h1 = document.querySelector("#score-board");
+// // var showAnswer = document.querySelector("p");
+// var scoreSection = document.querySelector("form");
+// // var submitButton = document.querySelector("#nameButton");
+// var scoreList = document.querySelector("#scoreList");
+// var userName = document.querySelector("#userName");
+// var playAgain = document.querySelector("#playAgain");
+// // var finalScore = "";
+// // var timerCount = 60;
+// // var timerOn;
 
+
+
+
+
+// document.addEventListener("submit", function (event) {
+//     event.preventDefault();
+//     finalScore = userName.value + " got " + finalScore;
+//     enterScore()
+
+
+// });
+
+
+// function endGame() {
+//     showAnswer.textContent = "";
+//     finalScore = score + " correct with " + timerCount + " seconds remaining";
+//     console.log(finalScore)
+//     h1El.textContent = "You finished with a score of " + score + "/5 and " + timerCount + " seconds remaining!";
+//     scoreSection.setAttribute("style", "display: block;");
+// };
+
+// // handles setting and getting local storage, as well as pushing saved scores to list items
+// function enterScore() {
+//     currentScores = "";
+
+
+//     currentScores = workingScores.concat(localStorage.getItem("scores"));
+
+//     console.log(currentScores);
+//     currentScores = currentScores.split(",");
+//     currentScores = currentScores.concat(finalScore);
+//     console.log(currentScores);
+//     // so a null keeps attaching to the front of working scores and I can't
+//     // avoid it so we're just skipping position 0
+//     for (var i = 1; i < currentScores.length; i++) {
+//         var eachInitials = document.createElement("li");  //creates a list item element
+//         eachInitials.textContent = workingScores[i];      //assigns the current position to that list item
+//         scoreList.appendChild(eachInitials);  //appends list item to list
+
+//     };
+//     playAgain.setAttribute("style", "display:block;");
+//     scoreList.setAttribute("style", "display: block;");
+//     scoreSection.setAttribute("style", "display: none;");
+//     h1.textContent = "All Scores"
+//     localStorage.setItem("scores", workingScores);
+
+
+// };
+
+// //will reset the game 
+// document.addEventListener("click", function (event) {
+//     if (event.target === playAgain) {
+//         start.setAttribute("style", "display: block;");
+//         // deletes all list items so the list doesn't double each print
+//         var child = scoreList.lastElementChild;
+//         while (child) {
+//             scoreList.removeChild(child);
+//             child = scoreList.lastElementChild;
+//         };
+
+//         score = 0;
+//         questionNum = 0;
+//         finalScore = "";
+//         timerCount = 60;
+//         currentQuestion = "";
+//         playAgain.setAttribute("style", "display: none;");
+
+//     }
+// });
