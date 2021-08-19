@@ -12,26 +12,9 @@
 
 <body>
 
-    <section id="score-board">
-        <span class="score">0</span>
-        <ol class="highscores">View Highscores</ol>
+    <section id="score-board"></section>
+        <h1 class="highscores">View Highscores<h1>
 
-        <!-- <div class="card">
-        <form method="POST">
-            <div class="input-group">
-                <label for="initials">Your Initials</label>
-                <input type="text" name="initials" id="initials" placeholder="CW" />
-            </div>
-            <div id="msg"></div>
-            <button id="go-back">Go Back</button>
-            <button id="clear-highscores">Clear Highscores</button>
-        </form>
-    </div>
-
-    <div class="card">
-        <h2>Last Registered User:</h2>
-        <p><strong>Initials:</strong> <span id="user-initials"></span></p>
-      </div> -->
     </section>
 
     <section>
@@ -42,15 +25,6 @@
     </section>
 
     <section>
-
-        <!-- <div class="card results">
-                <div class="win-loss-container">
-                    <div>
-                        <h3>Wins: <span class="win">0 </span> </h3>
-                        <h3>Losses: <span class="lose">0</span></h3>
-                    </div>
-                    <button class="reset-button">Reset Score</button>
-                </div> -->
 
         <div class="greeting">
             <h4 id="introduction"></h4>
@@ -77,9 +51,18 @@
             <p id="show-answer"></p>
         </div>
 
+
+
     </section>
 
-
+<div class="enter-initials">
+      <h1>Enter Your Initials</h1>
+      <form id="initials-form" method="POST">
+        <label for="initials-text">Add your initials: </label>
+        <input type="text" placeholder="e.g., CW" name="initials-text" id="initials-text" />
+      </form>
+      <p id="score-count"></p>
+      <ul id="initials-list"></ul>
 
     <script src="./assets/script.js"></script>
 </body>
